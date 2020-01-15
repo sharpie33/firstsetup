@@ -8,7 +8,14 @@ trigger:
 
 pool:
   vmImage: 'macos-latest'
-
+- task: Gradle@2
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'build'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: false
 steps:
 - task: Gradle@2
   inputs:
